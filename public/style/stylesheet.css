@@ -1,0 +1,23 @@
+/*
+    helper class starts
+*/
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.margin-top-15 {
+    margin-top: 15px;
+}
+tbody tr:nth-child(even){
+    background-color: #ebebeb;
+}
+tbody tr:nth-child(odd){
+    background-color: #fafafa;
+}
+
+
+
+/*
+    helper class ends
+*/

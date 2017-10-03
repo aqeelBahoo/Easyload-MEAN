@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Network Balance Sheet</title>
+    <link rel="stylesheet" href="./lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style/stylesheet.css">
+    <script src="./lib/jquery/dist/jquery.min.js"></script>
+    <script src="./lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./lib/angular/angular.js"></script>
+    <script src="./lib/angular/angular-route.js"></script>
+    <script src="./lib/angular/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script src="./routes/app.js"></script>
+    <script src="./controllers/indexCtrl.js"></script>
+    <script src="./controllers/login-ctrl.js"></script>
+
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+
+<div class="modal-demo">
+    <!--<button type="button" class="btn btn-default" >Open me!</button>-->
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Group</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            Do you want to delete the group...
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" style="float: left" ng-click="deleteGroup()">Delete</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+</div>
+
+
+
+
+
+
+
+
+
+<div ng-view></div>
+<div class="container">
+    <h1>Network Balance Sheet</h1>
+
+    <!-- handling case for lg to sm screen size -->
+    <div class="row">
+        <div class="col-sm-4 col-xs-4">
+            <input type="number" class="form-control " ng-model="easyLoad.number" placeholder="Cell Number">
+        </div>
+        <div class="col-sm-4 col-xs-2">
+            <input type="number" class="form-control col-lg-3 col-md-3" ng-model="easyLoad.rupees" placeholder="Rupees">
+        </div>
+        <div class="col-sm-2 col-xs-3">
+            <button class="btn btn-primary" style="width: 100%" ng-click="add()" ng-disabled="easyLoad._id">Add</button>
+        </div>
+        <div class="col-sm-2 col-xs-3">
+            <button class="btn btn-primary" style="width: 100%" ng-click="update(easyLoad._id)" ng-disabled="!(easyLoad._id)">Update</button>
+        </div>
+    </div>
+    <div class="row margin-top-15" >
+        <div class="col-sm-2 col-xs-3">
+            <select ng-model="search" class="form-control">
+                <option value="telenor">Telenor</option>
+                <option value="jazz">Jazz</option>
+                <option value="ufone">Ufone</option>
+                <option value="warid">Warid</option>
+                <option value="zong">Zong</option>
+            </select>
+        </div>
+        <div class="col-sm-2 col-xs-3">
+            <input type="search" ng-model="search" class="form-control" placeholder="Search Number">
+        </div>
+    </div>
+
+
+
+
+    <!-- handling case for lg to sm screen size end -->
+
+    <!-- handling case for xs size -->
+    <!--<div class="visible-xs ">-->
+    <!--<div class="row">-->
+    <!--<div class="col-xs-12">-->
+    <!--<input class="form-control " ng-model="contact.number">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+    <!--<div class="col-xs-12 margin-top-10">-->
+    <!--<input class="form-control col-lg-3 col-md-3" ng-model="contact.number">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+    <!--<div class="col-xs-12  margin-top-10">-->
+    <!--<button class="btn btn-primary" style="width: 100%" ng-click="add()">Add</button>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!-- handling case for xs screen size end -->
+
+    <!--network contact table start-->
+    <table class="table margin-top-15">
+        <thead style="font-size: 17px">
+        <tr>
+            <th>Serial No</th>
+            <th>Phone Number</th>
+            <th>Rupees</th>
+            <th>Vendor</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="record in easyLoadRecords | filter : search">
+            <td ng-bind="$index + 1"></td>
+            <td ng-bind="record.number"></td>
+            <td ng-bind="record.rupees"></td>
+            <td ng-bind="record.vendor"></td>
+            <td ng-bind="record.date"></td>
+            <td><button class="btn btn-danger" ng-click="remove(record._id, $index)">Remove</button>
+                <button class="btn bg-info" ng-click="edit(record._id,$index)">Edit</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <!--network contact table end-->
+</div>
+</body>
+</html>
